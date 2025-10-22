@@ -24,6 +24,20 @@ const LandingPage = () => {
   const testimonialsSlider = useRef(null);
   const [isAnnualBilling, setIsAnnualBilling] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
 
   // State for booking demo
   const [selectedService, setSelectedService] = useState(null);
@@ -239,10 +253,13 @@ const LandingPage = () => {
             Nails <span className="text-soft-rose">Now</span>
           </div>
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" onClick={handleNavClick} className="text-warm-gray hover:text-deep-charcoal transition-colors">Características</a>
-            <a href="#demo" onClick={handleNavClick} className="text-warm-gray hover:text-deep-charcoal transition-colors">Demo</a>
-            <a href="#pricing" onClick={handleNavClick} className="text-warm-gray hover:text-deep-charcoal transition-colors">Planes</a>
+            <a href="#features" onClick={handleNavClick} className="transition-colors">Características</a>
+            <a href="#demo" onClick={handleNavClick} className="transition-colors">Demo</a>
+            <a href="#pricing" onClick={handleNavClick} className="transition-colors">Planes</a>
             <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleError} />
+            <button onClick={toggleDarkMode} className="p-2 rounded-full focus:outline-none">
+              {darkMode ? '☀️' : '🌙'}
+            </button>
           </div>
           <button className="md:hidden p-2" id="mobile-menu-btn" onClick={() => setMobileMenuOpen(true)}>
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -264,10 +281,13 @@ const LandingPage = () => {
                         </button>
                     </div>
                     <nav className="space-y-4">
-                        <a href="#features" onClick={handleNavClick} className="block text-warm-gray hover:text-deep-charcoal transition-colors">Características</a>
-                        <a href="#demo" onClick={handleNavClick} className="block text-warm-gray hover:text-deep-charcoal transition-colors">Demo</a>
-                        <a href="#pricing" onClick={handleNavClick} className="block text-warm-gray hover:text-deep-charcoal transition-colors">Planes</a>
+                        <a href="#features" onClick={handleNavClick} className="block transition-colors">Características</a>
+                        <a href="#demo" onClick={handleNavClick} className="block transition-colors">Demo</a>
+                        <a href="#pricing" onClick={handleNavClick} className="block transition-colors">Planes</a>
                         <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleError} />
+                        <button onClick={toggleDarkMode} className="p-2 rounded-full focus:outline-none">
+                            {darkMode ? '☀️' : '🌙'}
+                        </button>
                     </nav>
                 </div>
             </div>
